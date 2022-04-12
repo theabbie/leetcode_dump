@@ -1,0 +1,27 @@
+{
+  "name": "leetcode_dump",
+  "version": "1.0.0",
+  "description": "Download all your leetcode submissions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "leetcode": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theabbie/leetcode_dump.git"
+  },
+  "keywords": [
+    "leetcode"
+  ],
+  "author": "theabbie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theabbie/leetcode_dump/issues"
+  },
+  "homepage": "https://github.com/theabbie/leetcode_dump#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "inquirer": "^8.2.2"
+  }
+}
