@@ -49,7 +49,7 @@ const questions = [
 ];
 
 inquirer.prompt(questions).then((res) => {
-  download(res.cookie, res.path, res.offset);
+  download(res.cookie, res.path, +res.offset);
 });
 
 async function download(cookie, path, offset) {
