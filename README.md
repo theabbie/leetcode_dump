@@ -8,6 +8,8 @@ Download all your leetcode submissions
 
 Clone this repo, `git clone https://github.com/theabbie/leetcode_dump`
 
+Run `yarn` to install all required dependencies.
+
 Run `yarn leetcode` to start the process, it will ask for your leetcode cookie which is required to fetch your submissions, it can be found in your browser storage.
 
 It will ask for the path to save all your code files, enter the path and press Enter.
