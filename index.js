@@ -80,6 +80,7 @@ async function download(cookie, path, offset) {
 }
 
 async function saveSubmissions(submissions, path) {
+  console.log("SAVING", submissions.length);
   await new Promise((resolve, reject) => {
     exec(`mkdir -p ${path}`, (err, stdout, stderr) => {
       if (err) reject(err);
