@@ -6,7 +6,7 @@ const fs = require("fs");
 const languages = {
   python: ".py",
   python3: ".py",
-  "c++": ".cpp",
+  cpp: ".cpp",
   c: ".c",
   java: ".java",
   "c#": ".cs",
@@ -22,7 +22,10 @@ const languages = {
   mysql: ".sql",
   "ms sql server": ".sql",
   oracle: ".sql",
+  bash: ".sh",
 };
+
+let done = new Set();
 
 const questions = [
   {
@@ -71,9 +74,9 @@ async function download(cookie, path, offset) {
         await saveSubmissions(submissions, path);
       }
     } catch (e) {
-      console.log("WAITING", e.message);
+      console.log("WAITING FOR 25 SECONDS -", e.message);
       await saveSubmissions(submissions, path);
-      setTimeout(fetchSubmissions, 10000);
+      setTimeout(fetchSubmissions, 25000);
     }
   }
   await fetchSubmissions();
@@ -88,7 +91,8 @@ async function saveSubmissions(submissions, path) {
     });
   });
   for (let sub of submissions) {
-    if (sub.status_display == "Accepted") {
+    if (sub.status_display == "Accepted" && !done.has(sub.title_slug)) {
+      done.add(sub.title_slug);
       await new Promise((resolve, reject) => {
         fs.writeFile(
           `${path}/${sub.title_slug}${languages[sub.lang.toLowerCase()]}`,
