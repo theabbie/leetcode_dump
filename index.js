@@ -49,15 +49,22 @@ const questions = [
       return 0;
     },
   },
+  {
+    type: "input",
+    name: "limit",
+    message: "Limit:",
+    default() {
+      return 10000;
+    },
+  },
 ];
 
 inquirer.prompt(questions).then((res) => {
-  download(res.cookie, res.path, +res.offset);
+  download(res.cookie, res.path, +res.offset, +res.limit);
 });
 
-async function download(cookie, path, offset) {
+async function download(cookie, path, offset, limit) {
   let has_next = true;
-  let limit = 20;
   const submissions = [];
   async function fetchSubmissions() {
     try {
@@ -68,7 +75,7 @@ async function download(cookie, path, offset) {
         },
       });
       submissions.push(...res.data.submissions_dump);
-      if (res.data.has_next) {
+      if (res.data.has_next && submissions.length < limit) {
         setTimeout(fetchSubmissions, 1000);
       } else {
         await saveSubmissions(submissions, path);
